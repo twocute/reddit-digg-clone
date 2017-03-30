@@ -18,16 +18,6 @@ class TopicController extends Controller
     }
 
     /**
-     * Loads the view that allows the user to add a topic
-     *
-     * @return view  The view that allows you to add a topic
-     */
-    public function addTopic()
-    {
-        return view('topic.add');
-    }
-
-    /**
      * Actually adds the topic to Redis
      *
      * @param Request  The Request object

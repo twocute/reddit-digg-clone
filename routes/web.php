@@ -14,7 +14,6 @@
 $app->get('/', 'TopicController@homepage');
 
 $app->get('topics', 'TopicController@topics');
-$app->get('topic/add', 'TopicController@addTopic');
 $app->post('topic/add', 'TopicController@doAddTopic');
 $app->get('topic/upvote/{id}', 'TopicController@upvote');
 $app->get('topic/downvote/{id}', 'TopicController@downvote');
