@@ -15,8 +15,8 @@
                 <td>{{ $topic['upvotes'] }}</td>
                 <td>{{ $topic['downvotes'] }}</td>
                 <td>
-                    <a href="/topic/upvote/{{ $topic['id'] }}">Upvote</a>
-                    <a href="/topic/downvote/{{ $topic['id'] }}">Downvote</a>
+                    <a class="btn btn-default" href="/topic/upvote/{{ $topic['id'] }}">Upvote</a>
+                    <a class="btn btn-default" href="/topic/downvote/{{ $topic['id'] }}">Downvote</a>
                 </td>
             </tr>
         @endforeach
