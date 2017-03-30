@@ -37,7 +37,9 @@ class TopicController extends Controller
 
         // Also updates the upvotes sorted set secondary index
         Redis::zadd('upvote_index', 0, $global_next_id);
-        Redis::zadd('downvote_index', 0, $global_next_id);
+
+        // Not required
+        //Redis::zadd('downvote_index', 0, $global_next_id);
 
         return redirect('topics');
     }
@@ -59,7 +61,7 @@ class TopicController extends Controller
             Redis::hincrby($id, 'downvotes', 1);
 
             // Update the index in the Redis sorted set
-            Redis::zincrby('downvote_index', 1, $id);
+            //Redis::zincrby('downvote_index', 1, $id);
 
             return redirect('topics');
         }
