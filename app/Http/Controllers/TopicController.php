@@ -35,7 +35,12 @@ class TopicController extends Controller
      */
     public function doAddTopic(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
+
+        // Validation, because we don't want blanks or longer than 255 chars
+        $this->validate($request, ['topic' => 'required|max:255']);
+
+        return "passed";
     }
 
     /**
