@@ -20,3 +20,6 @@ $app->get('topic/add', 'TopicController@addTopic');
 $app->post('topic/add', 'TopicController@doAddTopic');
 //$app->post('topic/upvote', 'TopicController@upvote');
 $app->get('topic/upvote/{id}', 'TopicController@upvote');
+
+
+$app->get('topics/purge', 'TopicController@purge');

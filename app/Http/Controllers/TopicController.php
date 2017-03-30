@@ -83,6 +83,17 @@ class TopicController extends Controller
     }
 
     /**
+     * Remove all topics from Redis
+     *
+     * @return string  "success" because from documentation: "This command never fails.""
+     */
+    public function purge()
+    {
+        Redis::flushall();
+        return "success";
+    }
+
+    /**
      * Loads the view that shows all the topics
      *
      * @return void
@@ -93,7 +104,7 @@ class TopicController extends Controller
         //dd($global_next_id);
         //dd(Redis::get(1))
         //dd(Redis::hgetall(1));
-        dd(Redis::zrevrange('upvote_index', 0, -1));
+        //dd(Redis::zrevrange('upvote_index', 0, -1));
         //dd(Redis::zrevrange('downvote_index', 0, -1));
         return view('topic.list');
     }
