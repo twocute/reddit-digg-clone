@@ -2,12 +2,12 @@
 
 @section('content')
 <div>
-    <table>
+    <table class="table table-hover">
         <tr>
-            <th>Topic</th>
-            <th>Upvote(s)</th>
-            <th>Downvote(s)</th>
-            <th>Actions</th>
+            <th width="60%">Topic</th>
+            <th width="10%">Upvote(s)</th>
+            <th width="10%">Downvote(s)</th>
+            <th width="20%">Actions</th>
         </tr>
         @foreach ($topics as $topic)
             <tr>
