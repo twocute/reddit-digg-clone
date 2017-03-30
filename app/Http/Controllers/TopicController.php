@@ -58,6 +58,31 @@ class TopicController extends Controller
     }
 
     /**
+     * Add an downvote to a topic and also updates its index
+     *
+     * @param id  The id of the topic receiving the downvote
+     *
+     * @return string  "success" on success, "failure" on failure
+     */
+    public function downvote($id)
+    {
+        // First check if the object exists before trying to upvote it
+        $object = Redis::hgetall($id);
+
+        if (!empty($object)) {
+            // Update the topic object
+            Redis::hincrby($id, 'downvotes', 1);
+
+            // Update the index
+            Redis::zincrby('downvote_index', 1, $id);
+
+            return "success";
+        }
+
+        return "failure";
+    }
+
+    /**
      * Add an upvote to a topic and also updates its index
      *
      * @param id  The id of the topic receiving the upvote
@@ -104,7 +129,7 @@ class TopicController extends Controller
         //dd($global_next_id);
         //dd(Redis::get(1))
         //dd(Redis::hgetall(1));
-        //dd(Redis::zrevrange('upvote_index', 0, -1));
+        dd(Redis::zrevrange('upvote_index', 0, -1));
         //dd(Redis::zrevrange('downvote_index', 0, -1));
         return view('topic.list');
     }
