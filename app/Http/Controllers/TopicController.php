@@ -73,7 +73,7 @@ class TopicController extends Controller
             // Update the topic object
             Redis::hincrby($id, 'downvotes', 1);
 
-            // Update the index
+            // Update the index in the Redis sorted set
             Redis::zincrby('downvote_index', 1, $id);
 
             return "success";
@@ -98,7 +98,7 @@ class TopicController extends Controller
             // Update the topic object
             Redis::hincrby($id, 'upvotes', 1);
 
-            // Update the index
+            // Update the index in the Redis sorted set
             Redis::zincrby('upvote_index', 1, $id);
 
             return "success";
