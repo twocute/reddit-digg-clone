@@ -20,7 +20,7 @@ class TopicController extends Controller
     /**
      * Loads the view that allows the user to add a topic
      *
-     * @return void
+     * @return view  The view that allows you to add a topic
      */
     public function addTopic()
     {
@@ -32,7 +32,7 @@ class TopicController extends Controller
      *
      * @param Request  The Request object
      *
-     * @return void
+     * @return redirect  Back to itself so you can quickly add another topic
      */
     public function doAddTopic(Request $request)
     {
