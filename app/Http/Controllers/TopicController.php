@@ -58,6 +58,31 @@ class TopicController extends Controller
     }
 
     /**
+     * Add an upvote to a topic and also updates its index
+     *
+     * @param id  The id of the topic receiving the upvote
+     *
+     * @return string  "success" on success, "failure" on failure
+     */
+    public function upvote($id)
+    {
+        // First check if the object exists before trying to upvote it
+        $object = Redis::hgetall($id);
+
+        if (!empty($object)) {
+            // Update the topic object
+            Redis::hincrby($id, 'upvotes', 1);
+
+            // Update the index
+            Redis::zincrby('upvote_index', 1, $id);
+
+            return "success";
+        }
+
+        return "failure";
+    }
+
+    /**
      * Loads the view that shows all the topics
      *
      * @return void
@@ -68,7 +93,7 @@ class TopicController extends Controller
         //dd($global_next_id);
         //dd(Redis::get(1))
         //dd(Redis::hgetall(1));
-        //dd(Redis::zrevrange('upvote_index', 0, -1));
+        dd(Redis::zrevrange('upvote_index', 0, -1));
         //dd(Redis::zrevrange('downvote_index', 0, -1));
         return view('topic.list');
     }
