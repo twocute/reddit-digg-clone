@@ -62,7 +62,7 @@ class TopicController extends Controller
      *
      * @param id  The id of the topic receiving the downvote
      *
-     * @return string  "success" on success, "failure" on failure
+     * @return mixed  Redirects to topics page on success, "failure" on failure
      */
     public function downvote($id)
     {
@@ -76,7 +76,7 @@ class TopicController extends Controller
             // Update the index in the Redis sorted set
             Redis::zincrby('downvote_index', 1, $id);
 
-            return "success";
+            return redirect('topics');
         }
 
         return "failure";
@@ -87,7 +87,7 @@ class TopicController extends Controller
      *
      * @param id  The id of the topic receiving the upvote
      *
-     * @return string  "success" on success, "failure" on failure
+     * @return mixed  Redirects to topics page on success, "failure" on failure
      */
     public function upvote($id)
     {
@@ -101,7 +101,7 @@ class TopicController extends Controller
             // Update the index in the Redis sorted set
             Redis::zincrby('upvote_index', 1, $id);
 
-            return "success";
+            return redirect('topics');
         }
 
         return "failure";
