@@ -166,7 +166,7 @@ class TopicController extends Controller
 
             // Pass the ID in the object too
             $object['id'] = $id;
-            $objects = $object;
+            $objects[] = $object;
         }
 
         return $objects;
