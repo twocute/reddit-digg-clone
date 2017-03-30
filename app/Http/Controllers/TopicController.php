@@ -125,25 +125,9 @@ class TopicController extends Controller
      */
     public function topics()
     {
-        //$global_next_id = Redis::incr('global_id');
-        //dd($global_next_id);
-        //dd(Redis::get(1))
-        //dd(Redis::hgetall(1));
-        //dd(Redis::zrevrange('upvote_index', 0, -1));
-        //dd(Redis::zrevrange('downvote_index', 0, -1));
         $topics_index = Redis::zrevrange('upvote_index', 0, -1);
-        $topics = array();
 
-        // Fetch the individual rows
-        foreach ($topics_index as $topic_index) {
-            $object = Redis::hgetall($topic_index);
-
-            // Also pass the ID of the row
-            $object['id'] = $topic_index;
-            $topics[] = $object;
-        }
-
-        return view('topic.list', ['topics' => $topics]);
+        return view('topic.list', ['topics' => $this->buildObjectsFromList($topics_index)]);
     }
 
     /******************************************************
