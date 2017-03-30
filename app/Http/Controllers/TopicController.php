@@ -136,7 +136,11 @@ class TopicController extends Controller
 
         // Fetch the individual rows
         foreach ($topics_index as $topic_index) {
-            $topics[] = Redis::hgetall($topic_index);
+            $object = Redis::hgetall($topic_index);
+
+            // Also pass the ID of the row
+            $object['id'] = $topic_index;
+            $topics[] = $object;
         }
 
         return view('topic.list', ['topics' => $topics]);
