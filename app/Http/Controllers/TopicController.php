@@ -119,6 +119,18 @@ class TopicController extends Controller
     }
 
     /**
+     * Loads the homepage that shows top 20 topics organized by upvotes
+     *
+     * @return void
+     */
+    public function homepage()
+    {
+        $topics_index = Redis::zrevrange('upvote_index', 0, 19);
+
+        return view('topic.list', ['topics' => $this->buildObjectsFromList($topics_index)]);
+    }
+
+    /**
      * Loads the view that shows all the topics
      *
      * @return void
