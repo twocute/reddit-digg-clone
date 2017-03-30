@@ -36,18 +36,13 @@ class TopicController extends Controller
      */
     public function doAddTopic(Request $request)
     {
-        //dd($request->all());
-
         // Validation, because we don't want blanks or longer than 255 chars
         $this->validate($request, ['topic' => 'required|max:255']);
-
-        //return "passed";
 
         // Insert the topic into Redis sorted set (duplicates allowed)
         // In this case, I don't check for duplicates, because I use an autoincrement ID for index
         $object = ['topic' => $request->input('topic'), 'upvotes' => 0, 'downvotes' => 0];
         $global_next_id = Redis::incr('global_id');
-        //Redis::set($global_next_id, json_encode($object));
         Redis::hmset($global_next_id, $object);
 
         // Also updates the upvotes sorted set secondary index
