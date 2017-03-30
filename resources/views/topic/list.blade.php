@@ -1,6 +1,7 @@
 @extends('layout.main')
 
 @section('content')
+@if(count($topics) > 0)
 <div>
     <table class="table table-hover">
         <tr>
@@ -22,4 +23,7 @@
         @endforeach
     </table>
 </div>
+@else
+    <p>No topics yet!</p>
+@endif
 @endsection
