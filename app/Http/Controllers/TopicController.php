@@ -129,8 +129,16 @@ class TopicController extends Controller
         //dd($global_next_id);
         //dd(Redis::get(1))
         //dd(Redis::hgetall(1));
-        dd(Redis::zrevrange('upvote_index', 0, -1));
+        //dd(Redis::zrevrange('upvote_index', 0, -1));
         //dd(Redis::zrevrange('downvote_index', 0, -1));
-        return view('topic.list');
+        $topics_index = Redis::zrevrange('upvote_index', 0, -1);
+        $topics = array();
+
+        // Fetch the individual rows
+        foreach ($topics_index as $topic_index) {
+            $topics[] = Redis::hgetall($topic_index);
+        }
+
+        return view('topic.list', ['topics' => $topics]);
     }
 }
