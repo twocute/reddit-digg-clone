@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class TopicController extends Controller
 {
     /**
@@ -22,6 +24,18 @@ class TopicController extends Controller
     public function addTopic()
     {
         return view('topic.add');
+    }
+
+    /**
+     * Actually adds the topic to Redis
+     *
+     * @param Request  The Request object
+     *
+     * @return void
+     */
+    public function doAddTopic(Request $request)
+    {
+        dd($request->all());
     }
 
     /**

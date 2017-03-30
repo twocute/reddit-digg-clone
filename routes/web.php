@@ -17,3 +17,4 @@ $app->get('/', function () use ($app) {
 
 $app->get('topics', 'TopicController@topics');
 $app->get('topic/add', 'TopicController@addTopic');
+$app->post('topic/add', 'TopicController@doAddTopic');
