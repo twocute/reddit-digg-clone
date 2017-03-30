@@ -5,8 +5,14 @@
     <form action="{{ URL::to('topic/add') }}" method="POST">
         <label for="topic">New Topic Name: </label>
         <input type="text" name="topic">
-        <button class="btn btn-default" type="submit">Add New Topic!</button>
+        <button class="btn btn-primary" type="submit">Add New Topic!</button>
     </form>
+</div>
+
+<div style="padding-top: 5px; padding-bottom: 5px;"></div>
+
+<div>
+    <a class="btn btn-danger"href="{{ URL::to('topics/purge') }}">Flush Redis cache</a>
 </div>
 
 <div style="padding-top: 5px; padding-bottom: 5px;"></div>
@@ -23,8 +29,8 @@
         @foreach ($topics as $topic)
             <tr>
                 <td>
-                    <a class="btn btn-default" href="/topic/upvote/{{ $topic['id'] }}">Upvote</a>
-                    <a class="btn btn-default" href="/topic/downvote/{{ $topic['id'] }}">Downvote</a>
+                    <a class="btn btn-success" href="/topic/upvote/{{ $topic['id'] }}">Upvote</a>
+                    <a class="btn btn-warning" href="/topic/downvote/{{ $topic['id'] }}">Downvote</a>
                 </td>
                 <td>{{ $topic['topic'] }}</td>
                 <td>{{ $topic['upvotes'] }}</td>
