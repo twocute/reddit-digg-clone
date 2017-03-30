@@ -4,7 +4,7 @@
 <div>
     <form action="{{ URL::to('topic/add') }}" method="POST">
         <label for="topic">New Topic Name: </label>
-        <input type="text" name="topic">
+        <input id="topic_input" type="text" name="topic">
         <button class="btn btn-primary" type="submit">Add New Topic!</button>
     </form>
 </div>
@@ -42,4 +42,13 @@
 @else
     <p>No topics yet!</p>
 @endif
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Auto-focus the cursor in the add topic box on page load
+        document.getElementById("topic_input").focus();
+    });
+</script>
 @endsection
