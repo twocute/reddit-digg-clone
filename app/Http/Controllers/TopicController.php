@@ -21,7 +21,7 @@ class TopicController extends Controller
      */
     public function addTopic()
     {
-        return "to add";
+        return view('topic.add');
     }
 
     /**
@@ -31,6 +31,6 @@ class TopicController extends Controller
      */
     public function topics()
     {
-        return "to list";
+        return view('topic.list');
     }
 }
