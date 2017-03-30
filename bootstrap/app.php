@@ -23,6 +23,7 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
 
+$app->configure('database');
 // $app->withFacades();
 
 // $app->withEloquent();
