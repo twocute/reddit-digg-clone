@@ -145,4 +145,30 @@ class TopicController extends Controller
 
         return view('topic.list', ['topics' => $topics]);
     }
+
+    /******************************************************
+     * HELPER FUNCTIONS
+     *****************************************************/
+
+    /**
+     * Fetch the objects identified by the list of ids from Redis
+     *
+     * @param array  List of the ids we need to fetch from Redis
+     *
+     * @return array  Array of objects that is stored in Redis
+     */
+    public function buildObjectsFromList(array $list_of_ids)
+    {
+        $objects = array();
+
+        foreach($list_of_ids as $id) {
+            $object = Redis::hgetall($id);
+
+            // Pass the ID in the object too
+            $object['id'] = $id;
+            $objects = $object;
+        }
+
+        return $objects;
+    }
 }
