@@ -14,3 +14,6 @@
 $app->get('/', function () use ($app) {
     return $app->version();
 });
+
+$app->get('topics', 'TopicController@topics');
+$app->get('topic/add', 'TopicController@addTopic');
