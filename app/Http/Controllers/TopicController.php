@@ -54,7 +54,7 @@ class TopicController extends Controller
         Redis::zadd('upvote_index', 0, $global_next_id);
         Redis::zadd('downvote_index', 0, $global_next_id);
 
-        return "success";
+        return redirect('topic/add');
     }
 
     /**
