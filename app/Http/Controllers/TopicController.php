@@ -93,14 +93,15 @@ class TopicController extends Controller
     }
 
     /**
-     * Remove all topics from Redis
+     * Remove all topics from Redis. "This command never fails."
      *
-     * @return string  "success" because from documentation: "This command never fails.""
+     * @return redirect  Redirects back to topics page
      */
     public function purge()
     {
         Redis::flushall();
-        return "success";
+
+        return redirect('topics');
     }
 
     /**
