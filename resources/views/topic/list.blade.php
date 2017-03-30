@@ -1,6 +1,16 @@
 @extends('layout.main')
 
 @section('content')
+<div>
+    <form action="{{ URL::to('topic/add') }}" method="POST">
+        <label for="topic">New Topic Name: </label>
+        <input type="text" name="topic">
+        <button class="btn btn-default" type="submit">Add New Topic!</button>
+    </form>
+</div>
+
+<div style="padding-top: 5px; padding-bottom: 5px;"></div>
+
 @if(count($topics) > 0)
 <div>
     <table class="table table-hover">
